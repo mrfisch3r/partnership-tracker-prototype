@@ -5,9 +5,7 @@ This partnership tracker is a project devloped by students from the University o
 This project is currently in early development and will be continously worked on throughout the coming weeks.
 
 **Known Issues** ~
-  - 
-  -
-  -
+  - This will be used in the future 
 
 **Next Milestone** ~
   - Connect the database and the front-end to create a cohesive website
