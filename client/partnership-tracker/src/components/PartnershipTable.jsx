@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 
 //dummy data for prototyping.
 //TODO: replace this hardcoded dummyData with a fetch call to Flask API endpoint
-const dummyData = [
+let dummyData = [
   { 
     id: 1, 
     name: 'Community Partner A', 
@@ -37,8 +37,40 @@ const dummyData = [
   },
 ];
 
+async function GetData()
+{
+  try {
+    const res = await fetch('http://127.0.0.1:5000/api/data');
+    const dummyData = await res.json();
+    document.getElementById('response').innerText = dummyData.message;
+    console.log(dummyData)
+  } catch (err) {
+    console.error('Error:', err);
+  }
+
+}
+
+
 const PartnershipTable = ({ filters, onPartnerSelect }) => {
   const [sortOrder, setSortOrder] = useState('desc');
+  const [dummyData, setPartners] = useState([])
+
+
+    const GetData = async () => {
+      try {
+        const res = await fetch('http://127.0.0.1:5000/api/partners');
+        const data = await res.json();
+        setPartners(data); // ✅ store in state
+        console.log(data)
+      } catch (err) {
+        console.error('Error fetching data:', err);
+      }
+    };
+
+  useEffect(() => {
+    GetData();
+  }, []);
+
 
   //filter the dummy data based on selected filters.
   const filteredData = dummyData.filter((partner) => {

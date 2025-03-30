@@ -46,6 +46,8 @@ function App() {
     setSelectedPartner(null);
   };
 
+
+
   return (
     <div className="app-container">
       <Header />

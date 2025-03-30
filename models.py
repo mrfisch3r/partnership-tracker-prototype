@@ -34,7 +34,10 @@ class PotentialPartnerships(db.Model):
     contact_date = db.Column(db.Text, nullable=True)
     next_contact = db.Column(db.Text, nullable=True)
     notes = db.Column(db.Text, nullable=True)
-    
+    county = db.Column(db.String(255), nullable=True)
+    status = db.Column(db.String(50), nullable=True)
+
+
 class NotPotentialPartnerships(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20), nullable=True)
@@ -44,6 +47,8 @@ class NotPotentialPartnerships(db.Model):
     contact_date = db.Column(db.Text, nullable=True)
     contact_attempt = db.Column(db.Text, nullable=True)
     notes = db.Column(db.Text, nullable=True)
+    county = db.Column(db.String(255), nullable=True)
+    status = db.Column(db.String(50), nullable=True)
     
 class MonthlyUpdates(db.Model):
     id = db.Column(db.Integer, primary_key=True)
