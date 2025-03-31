@@ -19,6 +19,8 @@ This project is currently in early development and will be continously worked on
 
 
 **User Stories** ~
+_Currently Implemented:_
+
 - Upload Previous Data
   - AS A staff member,
 I WOULD LIKE TO upload data from previous spreadsheets
@@ -38,6 +40,8 @@ TO BE ABLE TO keep track of everything I've done.
   - AS A staff member,
 I WOULD LIKE TO be able to delete my own entries
 TO BE ABLE TO correct entry mistakes.
+
+_Future Implementations:_
 
 - Track User Data Entries
   - AS A supervisor,
@@ -73,14 +77,3 @@ SO THAT I CAN choose which option I need efficiently.
   - AS A community partner,
 I WOULD LIKE TO have access to the database
 SO THAT I CAN confirm the information within.
-
-- Community Partner Resource Editing
-  - AS A community partner,
-I WOULD LIKE TO be able to edit my resources
-SO THAT I CAN ensure that all information is accurate and up to date.
-
-- Continue Using Current Database
-  - AS A staff member,
-I WOULD LIKE TO keep using the database(s) I'm already using
-SO THAT I CAN avoid having to learn a new system.
-Contributed by: Kevin Dawson-Fischer
