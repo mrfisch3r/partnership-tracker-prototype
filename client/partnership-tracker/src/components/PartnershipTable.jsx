@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 //dummy data for prototyping.
 //TODO: replace this hardcoded dummyData with a fetch call to Flask API endpoint
-const dummyData = [
+let dummyData = [
   { 
     id: 1, 
     name: 'Community Partner A', 
@@ -37,8 +37,56 @@ const dummyData = [
   },
 ];
 
+async function GetData()
+{
+  try {
+    const res = await fetch('http://127.0.0.1:5000/api/data');
+    const dummyData = await res.json();
+    document.getElementById('response').innerText = dummyData.message;
+    console.log(dummyData)
+  } catch (err) {
+    console.error('Error:', err);
+  }
+}
+
+
 const PartnershipTable = ({ filters, onPartnerSelect }) => {
   const [sortOrder, setSortOrder] = useState('desc');
+  // Using dummyData state variable to store partners from the API.
+  const [dummyData, setPartners] = useState([])
+
+  // Fetch partners from the Flask API
+  const GetData = async () => {
+    try {
+      const res = await fetch('http://127.0.0.1:5000/api/partners');
+      const data = await res.json();
+      setPartners(data); // ✅ store in state
+      console.log(data)
+    } catch (err) {
+      console.error('Error fetching data:', err);
+    }
+  };
+
+  // Delete handler to remove a partner entry
+  const handleDelete = async (id, e) => {
+    // Prevent the row click event from triggering
+    e.stopPropagation();
+    try {
+      const res = await fetch(`http://127.0.0.1:5000/api/partner/${id}`, {
+        method: 'DELETE'
+      });
+      const data = await res.json();
+      console.log(data.message);
+      // Update state to remove the deleted partner
+      setPartners(dummyData.filter(p => p.id !== id));
+    } catch (error) {
+      console.error('Error deleting partner:', error);
+    }
+  };
+
+  useEffect(() => {
+    GetData();
+  }, []);
 
   //filter the dummy data based on selected filters.
   const filteredData = dummyData.filter((partner) => {
@@ -71,6 +119,7 @@ const PartnershipTable = ({ filters, onPartnerSelect }) => {
             <th>County</th>
             <th>Status</th>
             <th>Last Updated</th>
+            <th>Actions</th> {/* New column for delete actions */}
           </tr>
         </thead>
         <tbody>
@@ -80,6 +129,9 @@ const PartnershipTable = ({ filters, onPartnerSelect }) => {
               <td>{partner.county}</td>
               <td>{partner.status}</td>
               <td>{partner.lastUpdated}</td>
+              <td>
+                <button onClick={(e) => handleDelete(partner.id, e)}>Delete</button>
+              </td>
             </tr>
           ))}
         </tbody>
