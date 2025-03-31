@@ -19,7 +19,8 @@ This project is currently in early development and will be continously worked on
 
 
 **User Stories** ~
-_Currently Implemented:_
+
+_Currently Implemented User Stories:_
 
 - Upload Previous Data
   - AS A staff member,
@@ -41,7 +42,7 @@ TO BE ABLE TO keep track of everything I've done.
 I WOULD LIKE TO be able to delete my own entries
 TO BE ABLE TO correct entry mistakes.
 
-_Future Implementations:_
+_Future User Story Implementations:_
 
 - Track User Data Entries
   - AS A supervisor,
